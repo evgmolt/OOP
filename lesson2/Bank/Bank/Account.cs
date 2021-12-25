@@ -54,6 +54,19 @@ namespace Bank
             }
         }
 
+        public decimal Transfer(Account accountFrom, decimal sum)
+        {
+            var result = accountFrom.Withdraw(sum);
+            if (result >= 0)
+            {
+                Deposit(sum);
+                return sum;
+            }
+            else
+            {
+                return -1;
+            }
+        }
         public void Deposit(decimal sum)
         {
             _balance += sum;
